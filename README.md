@@ -61,5 +61,13 @@ If you cache your Laravel config then you may need to do something like the foll
             ]) : [],
         ],
 
+To use the the connection you need to set DB_CONNECTION in your .env file to use the new connection
+ 
+    DB_CONNECTION=mysql_rds
 
+If your AWS credentials are in ~/.aws/credentials then you will need to add the parent directory of .aws as a HOME environment variable.
 
+e.g if your .aws dir is in /home/yourusernam then add the following to your .env
+
+    HOME=/home/yourusername
+    
