@@ -29,9 +29,13 @@ use Aws\SecretsManager\SecretsManagerClient;
  */
 class AwsSecretsManagerReader {
 
-    public static $aws_client;
+    public static $aws_client = null;
 
     public static $version = '2017-10-17';
+
+    public static $secret_name;
+
+    public static $secret_data;
 
     public static $secret_value;
 
@@ -114,9 +118,14 @@ class AwsSecretsManagerReader {
                 self::makeClient();
             }
 
-            $result = self::$aws_client->getSecretValue([
-                'SecretId' => $secret_name,
-            ]);
+            // only make an API call if secret doesn't match what we already have
+            if ($secret_name !== self::$secret_name) {
+                self::$secret_name = $secret_name;
+
+                self::$secret_data = self::$aws_client->getSecretValue([
+                    'SecretId' => $secret_name,
+                ]);
+            }
 
         } catch (AwsException $e) {
             $error = $e->getAwsErrorCode();
@@ -148,26 +157,24 @@ class AwsSecretsManagerReader {
             }
         }
 
-        return self::decodeValue($result);
+        return self::decodeValue();
     }
 
     /**
      * decode the AWS secrets manager secret as required
      *
-     * @param $secret
-     *
      * @return false|mixed|string|null
      */
-    public static function decodeValue($secret)
+    public static function decodeValue()
     {
         // Decrypts secret using the associated KMS CMK.
         // Depending on whether the secret is a string or binary, one of these fields will be populated.
-        if (isset($secret['SecretString'])) {
-            return $secret['SecretString'];
+        if (self::$secret_data && isset(self::$secret_data['SecretString'])) {
+            return self::$secret_data['SecretString'];
         }
 
-        if (\is_array($secret) && isset($secret['SecretBinary'])) {
-            return base64_decode($secret['SecretBinary']);
+        if (self::$secret_data && \is_array(self::$secret_data) && isset(self::$secret_data['SecretBinary'])) {
+            return base64_decode(self::$secret_data['SecretBinary']);
         }
 
         return null;
