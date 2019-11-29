@@ -39,6 +39,8 @@ class AwsSecretsManagerReader {
 
     public static $secret_value;
 
+    private static $refresh_secret = false;
+
     /**
      * The makeClient method relies on the aws default provider chain
      * https://docs.aws.amazon.com/sdk-for-php/v3/developer-guide/guide_credentials.html
@@ -119,8 +121,9 @@ class AwsSecretsManagerReader {
             }
 
             // only make an API call if secret doesn't match what we already have
-            if ($secret_name !== self::$secret_name) {
+            if ($secret_name !== self::$secret_name || self::$refresh_secret) {
                 self::$secret_name = $secret_name;
+                self::$refresh_secret = false;
 
                 self::$secret_data = self::$aws_client->getSecretValue([
                     'SecretId' => $secret_name,
@@ -178,6 +181,19 @@ class AwsSecretsManagerReader {
         }
 
         return null;
+    }
+
+    /**
+     * Force a refresh of the secret
+     *
+     * @param $secret_name
+     *
+     * @return false|mixed|string|null
+     */
+    public static function refreshSecret($secret_name)
+    {
+        self::$refresh_secret = true;
+        return self::getSecret($secret_name);
     }
 
     /**
