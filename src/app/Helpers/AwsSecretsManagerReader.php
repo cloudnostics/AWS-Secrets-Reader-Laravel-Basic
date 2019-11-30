@@ -1,12 +1,14 @@
 <?php
 /**
- * Copyright 2019 Quantic Ventures Ltd t/a CloudPeriscope.com. All Rights Reserved.
+ * Copyright 2019 Quantic Ventures Ltd (CloudPeriscope.com). All Rights Reserved.
  *
  * This file is licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License. A copy of
  * the License is located at
  *
- * https://www.apache.org/licenses/LICENSE-2.0.txt
+ * @license Apache License 2.0
+ * @license https://www.apache.org/licenses/LICENSE-2.0.txt
+ * @license LICENSE
  *
  * This file is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
  * CONDITIONS OF ANY KIND, either express or implied. See the License for the
