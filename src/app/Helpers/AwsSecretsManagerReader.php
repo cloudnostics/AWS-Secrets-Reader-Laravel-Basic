@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2019 Quantic Ventures Ltd (CloudPeriscope.com). All Rights Reserved.
+ * Copyright 2019 Quantic Ventures Ltd. All Rights Reserved.
  *
  * This file is licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License. A copy of
@@ -219,7 +219,7 @@ class AwsSecretsManagerReader {
 
         // if we have a key then we are expecting key/value pairs as a JSON string
         if (!isset(self::$secret_value[$key])) {
-            throw new \Exception('[CloudPeriscope-AwsSecretsManagerReader:WARN] Secret Key does not exist');
+            throw new \Exception('[Cloudnostics-AwsSecretsManagerReader:WARN] Secret Key does not exist');
         }
 
         return self::$secret_value[$key];
