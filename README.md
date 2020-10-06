@@ -33,7 +33,7 @@ AWS_REGION=eu-west-1
 
 ## Basic Usage
 
-####To retrieve the whole secret
+#### To retrieve the whole secret
 
 ```php
 $secret = AwsSecretsManagerReader::getSecret('{SECRET_NAME}');
