@@ -39,7 +39,7 @@ AWS_REGION=eu-west-1
 $secret = AwsSecretsManagerReader::getSecret('{SECRET_NAME}');
 ``` 
 
-####To retrieve a specific value of the secret, ask for it by it's key e.g.
+#### To retrieve a specific value of the secret, ask for it by it's key e.g.
 ```php
 AwsSecretsManagerReader::getSecretKey('{SECRET_NAME}', 'username');
 AwsSecretsManagerReader::getSecretKey('{SECRET_NAME}', 'password');
@@ -48,7 +48,7 @@ AwsSecretsManagerReader::getSecretKey('{SECRET_NAME}', 'host');
 AwsSecretsManagerReader::getSecretKey('{SECRET_NAME}', 'port');
 ```
 
-####To refresh the secret from AWS
+#### To refresh the secret from AWS
 
 The AwsSecretsManagerReader class will try to minimise the calls to AWS for fetching secrets and cache it during each run.
 
