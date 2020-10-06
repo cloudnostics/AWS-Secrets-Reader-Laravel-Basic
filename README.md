@@ -18,7 +18,7 @@ e.g if your .aws dir is in `/home/yourusername` then add the following to your .
 HOME=/home/yourusername
 ```
 
-The AWS sdk should pickup the default profile from your credentials file, alternatively you can set your AWS aAccess Key and Secret in your .env file using the entries
+The AWS sdk should pickup the default profile from your credentials file, alternatively you can set your AWS Access Key and Secret in your .env file using the entries
 
 ```dotenv
 AWS_ACCESS_KEY_ID={YOUR_ACCESS_KEY}
