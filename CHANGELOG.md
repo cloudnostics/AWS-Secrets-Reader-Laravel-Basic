@@ -1,8 +1,6 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## [Unreleased]
-
 ## [0.0.1] - 2019-11-29
 ### Added
 - caching of secret between calls of `getSecret` and `getSecretKey()`  
@@ -17,3 +15,5 @@ All notable changes to this project will be documented in this file.
 
 ## [0.0.0] - 2019-11-28
 - Initial release, really rough ;)
+
+## [Unreleased]
